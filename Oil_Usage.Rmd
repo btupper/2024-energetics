@@ -1,0 +1,52 @@
+---
+title: "Oil Usage"
+author: "btupper"
+date: "2024-09-04"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("setup.R")
+```
+
+We can read in a [merged table](https://docs.google.com/spreadsheets/d/1Ro1yU67PyDezR2tFYaSLomV7pfX_RGl4IGBuLsnAeW0/edit?usp=drive_link) to make analysis easier.  Here are the first 6 records...
+
+```{r}
+x = read_downeast() 
+knitr::kable(head(x))
+```
+
+Plot a timeseries...
+
+```{r}
+plot_timeseries(x)
+```
+
+What's going on at 97 Main St?
+
+
+How about by cost instead of volume burned?
+
+```{r}
+plot_timeseries(x, var = Cost)
+```
+
+
+And a monthly box plot by volume burned.
+
+```{r}
+plot_monthly(x)
+```
+
+And by cost...
+
+```{r}
+plot_monthly(x, var = Cost)
+```
+
+## Cost per unit
+
+```{r}
+plot_timeseries(x, var = CostPerUnit)
+```
